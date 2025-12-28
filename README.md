@@ -1,5 +1,7 @@
 # SkillSwap: Student Skill Sharing App🎓💻
 **SkillSwap** is a community-driven full-stack platform where students can exchange knowledge. Whether you're a React pro or a Guitar beginner, SkillSwap allows you to find mentors and become one yourself.
+
+### **Live Project Link**: https://skill-swap-sujil.netlify.app/
 ___
 ### 🌟 Features
 - **Secure Authentication**: JWT-based login and registration with global state managed by Context API.
