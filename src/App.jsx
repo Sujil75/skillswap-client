@@ -18,8 +18,8 @@ export default function App() {
         <Route path="/" element={<ProtectedRoute />}>
             <Route index element={<Dashboard />} />
         </Route>
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/add-skill" element={<ProtectedRoute />}>
             <Route index element={<SkillCreate />} />
         </Route>
