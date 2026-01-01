@@ -65,7 +65,7 @@ ____
 ```
 bash
 
-git clone https://github.com/yourusername/SkillSwap.git
+git clone https://github.com/Sujil75/skillswap-client.git
 cd SkillSwap
 ```
 2. Install Backend Dependencies:
