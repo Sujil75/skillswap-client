@@ -6,7 +6,7 @@ import { useNavigate, Navigate } from "react-router-dom"
 const Login = () => {
   const { loginUser, token } = useContext(UserContext)
   const navigate = useNavigate()
-  const {error, setError} = useState('')
+  const [error, setError] = useState('')
 
   const [form, setForm] = useState({ username: "", email: "", password: "" })
 
@@ -19,38 +19,41 @@ const Login = () => {
       loginUser(res.data)
       navigate("/")
     }catch (err) {
-      setError(err.response.data.message)
+      const errMsg = err.response.data.message
+      setError(errMsg)
     }
   }
 
   return (
-    <div className='max-w-md mx-auto mt-10 p-6 shadow-lg rounded bg-white'>
-      <h2 className='text-2xl mb-4'>Login</h2>
+    <div className="w-[100%] h-[100vh] flex items-center p-0">
+      <div className='w-[500px] mx-auto p-6 shadow-lg rounded bg-white'>
+        <h2 className='text-2xl mb-4'>Login</h2>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input 
-          type="text" 
-          placeholder="Username"
-          className="border p-2 rounded"
-          onChange={(e) => setForm({...form, username: e.target.value})}
-        />
-        <input 
-          type="email" 
-          placeholder="Email"
-          className="border p-2 rounded"
-          onChange={(e) => setForm({...form, email: e.target.value})}
-        />
-        <input 
-          type="password" 
-          placeholder="Password"
-          className="border p-2 rounded"
-          onChange={(e) => setForm({...form, password: e.target.value})}
-        />
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <input 
+            type="text" 
+            placeholder="Username"
+            className="border p-2 rounded"
+            onChange={(e) => setForm({...form, username: e.target.value})}
+          />
+          <input 
+            type="email" 
+            placeholder="Email"
+            className="border p-2 rounded"
+            onChange={(e) => setForm({...form, email: e.target.value})}
+          />
+          <input 
+            type="password" 
+            placeholder="Password"
+            className="border p-2 rounded"
+            onChange={(e) => setForm({...form, password: e.target.value})}
+          />
 
-        <button type="submit" className="bg-blue-600 text-white py-2 rounded">Login</button>
-      </form>
-      <p>{error}</p>
-      <p>Don't have an account? <a href="/register" className="underline hover:text-blue-500">Register here.</a></p>
+          <button type="submit" className="bg-blue-600 text-white py-2 rounded w-[200px] place-self-center">Login</button>
+        </form>
+        <p className="text-red-500 font-bold">{error}</p>
+        <p>Don't have an account? <a href="/register" className="underline hover:text-blue-500">Register here.</a></p>
+      </div>
     </div>
   )
 }

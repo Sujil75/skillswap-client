@@ -22,30 +22,32 @@ const Register = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-white p-6 shadow rounded">
+    <div className="w-[100%] h-[100vh] flex items-center p-0">
+      <div className="w-[500px] mx-auto bg-white p-6 shadow rounded">
 
-      <h2 className="text-2xl mb-3">Signup</h2>
+        <h2 className="text-2xl mb-3">Signup</h2>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
 
-        <input className="border p-2" placeholder="Name"
-          onChange={(e)=>setForm({...form, name: e.target.value})} />
+          <input className="border p-2" placeholder="Name"
+            onChange={(e)=>setForm({...form, name: e.target.value})} />
 
-        <input className="border p-2" placeholder="Username"
-          onChange={(e)=>setForm({...form, username: e.target.value})} />
+          <input className="border p-2" placeholder="Username"
+            onChange={(e)=>setForm({...form, username: e.target.value})} />
 
-        <input className="border p-2" placeholder="Email"
-          onChange={(e)=>setForm({...form, email: e.target.value})} />
+          <input className="border p-2" placeholder="Email"
+            onChange={(e)=>setForm({...form, email: e.target.value})} />
 
-        <input type="password" className="border p-2" placeholder="Password"
-          onChange={(e)=>setForm({...form, password: e.target.value})} />
+          <input type="password" className="border p-2" placeholder="Password"
+            onChange={(e)=>setForm({...form, password: e.target.value})} />
 
-        <button type="submit" className="bg-green-600 text-white py-2 rounded">
-          Create Account
-        </button>
-      </form>
+          <button type="submit" className="bg-green-600 text-white py-2 rounded w-[200px] place-self-center">
+            Create Account
+          </button>
+        </form>
 
-      <p>Already have an account? <a href="/login" className="underline">Login here.</a></p>
+        <p>Already have an account? <a href="/login" className="underline">Login here.</a></p>
+      </div>
     </div>
   )
 }
