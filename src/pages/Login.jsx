@@ -2,9 +2,12 @@ import { useState, useContext } from "react"
 import api from "../utils/api"
 import { UserContext } from "../context/UserContext"
 import { useNavigate, Navigate } from "react-router-dom"
+import {apiConstant} from '../utils/seed'
+import Loader from '../components/Loader'
 
 const Login = () => {
   const { loginUser, token } = useContext(UserContext)
+  const [loader, setLoader] = useState(apiConstant.initial)
   const navigate = useNavigate()
   const [error, setError] = useState('')
 
@@ -15,6 +18,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      setLoader(apiConstant.inProgress)
       const res = await api.post("/auth/login", form)
       loginUser(res.data)
       navigate("/")
@@ -35,23 +39,26 @@ const Login = () => {
             placeholder="Username"
             className="border p-2 rounded"
             onChange={(e) => setForm({...form, username: e.target.value})}
+            onFocus={() => (setError(""), setLoader(apiConstant.initial))}
           />
           <input 
             type="email" 
             placeholder="Email"
             className="border p-2 rounded"
             onChange={(e) => setForm({...form, email: e.target.value})}
+            onFocus={() => (setError(""), setLoader(apiConstant.initial))}
           />
           <input 
             type="password" 
             placeholder="Password"
             className="border p-2 rounded"
             onChange={(e) => setForm({...form, password: e.target.value})}
+            onFocus={() => (setError(""), setLoader(apiConstant.initial))}
           />
 
           <button type="submit" className="bg-blue-600 text-white py-2 rounded w-[200px] place-self-center">Login</button>
         </form>
-        <p className="text-red-500 font-bold">{error}</p>
+        {error ? <p className="text-red-500 font-bold">{error}</p> : loader !== apiConstant.initial ? <Loader /> : ""}
         <p>Don't have an account? <a href="/register" className="underline hover:text-blue-500">Register here.</a></p>
       </div>
     </div>
