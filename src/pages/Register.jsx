@@ -22,6 +22,14 @@ const Register = () => {
 
     localStorage.removeItem("token")
     localStorage.setItem("token", res.data.token)
+    
+    if (!token) {
+      localStorage.removeItem("token")
+      localStorage.removeItem("user")
+
+      window.location.reload()
+    }
+
     navigate("/")
   }
 
