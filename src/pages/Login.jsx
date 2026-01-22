@@ -58,7 +58,7 @@ const Login = () => {
 
           <button type="submit" className="bg-blue-600 text-white py-2 rounded w-[200px] place-self-center">Login</button>
         </form>
-        {error ? <p className="text-red-500 font-bold">{error}</p> : loader !== apiConstant.initial ? <Loader /> : ""}
+        {error ? <p className="text-red-500 font-bold">{error}</p> : loader !== apiConstant.initial ? <Loader color="#1455ce" size="40" /> : ""}
         <p>Don't have an account? <a href="/register" className="underline hover:text-blue-500">Register here.</a></p>
       </div>
     </div>

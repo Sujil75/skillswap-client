@@ -10,6 +10,7 @@ const Navbar = () => {
   
   logoutUser = () => {
     localStorage.removeItem("token")
+    localStorage.removeItem('user')
     window.location.reload()
     navigate("/login")
   }

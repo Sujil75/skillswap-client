@@ -2,9 +2,12 @@ import { useState, useContext } from "react"
 import { UserContext } from "../context/UserContext"
 import api from "../utils/api"
 import { useNavigate, Navigate } from "react-router-dom"
+import {apiConstant} from '../utils/seed'
+import Loader from '../components/Loader'
 
 const Register = () => {
   const { loginUser, token } = useContext(UserContext)
+  const [loader, setLoader] = useState(apiConstant.initial)
   const navigate = useNavigate()
 
   const [form, setForm] = useState({name: "", username: "", email: "", password: ""})
@@ -13,6 +16,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoader(apiConstant.inProgress)
     const res = await api.post("/auth/signup", form)
     loginUser(res.data)
 
@@ -45,6 +49,8 @@ const Register = () => {
             Create Account
           </button>
         </form>
+
+        {loader != apiConstant.initial ? <Loader color="#276221" size="40" /> : null}
 
         <p>Already have an account? <a href="/login" className="underline">Login here.</a></p>
       </div>
