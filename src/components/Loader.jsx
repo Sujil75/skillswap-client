@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThreeDots } from 'react-loader-spinner';
 
-const Loader = props => {
+function Loader(props){
   const {color, size} = props
 
   return (
