@@ -3,6 +3,7 @@ import { Chrono } from "react-chrono"
 import api from "../utils/api"
 import { UserContext } from "../context/UserContext"
 import Navbar from "../components/Navbar"
+import Loader from "../components/Loader"
 
 // import "react-chrono/dist/style.css";
 
@@ -52,54 +53,59 @@ const TimelinePage = () => {
     <>
       <Navbar />
 
-      <div className="p-6" style={{scrollbarWidth: "none"}}>
-        <h2 className="text-3xl font-semibold mb-6">Skill Timeline</h2>
-        {timelineData.length > 0 ? (
-          <div style={{ width: "100%", height: "700px" }} className="mx-auto flex flex-col justify-center">
-            <Chrono
-              items={items}
-              mode="alternating"
-              focusActiveItemOnLoad={false} 
-              scrollable={false}
-              hideControls={true} 
-              
-              layout={{
-                cardWidth: 450,
-                cardHeight: 'auto',
-                responsive: { enabled: true, breakpoint: 768 }
-              }}
-              
-              content={{
-                alignment: {
-                  horizontal: 'center',
-                  vertical: 'center'
-                }
-              }}
-              
-              interaction={{
-                keyboardNavigation: true,
-                pointClick: true,
-                autoScroll: false,
-              }}
-              
-              display={{
-                borderless: false,
-                toolbar: { enabled: false } 
-              }}
-              
-              animation={{
-                slideshow: { enabled: false, duration: 4000, type: 'fade' }
-              }}
-              
-              theme={{
-                primary: '#0070f3',
-                cardBgColor: '#ffffff',
-                cardTitleColor: '#1f2937'
-              }}
-            />
+      {timelineData.length === 0 ? (
+        <div className="p-6 h-[100vh] flex justify-center items-center">
+          <Loader color="#1455ce" size="70" />
+        </div>
+        ) : (
+          <div className="p-6" style={{scrollbarWidth: "none"}}>
+            <h2 className="text-3xl font-semibold mb-6">Skill Timeline</h2>
+            <div style={{ width: "100%", height: "700px" }} className="mx-auto flex flex-col justify-center">
+              <Chrono
+                items={items}
+                mode="alternating"
+                focusActiveItemOnLoad={false} 
+                scrollable={false}
+                hideControls={true} 
+                
+                layout={{
+                  cardWidth: 450,
+                  cardHeight: 'auto',
+                  responsive: { enabled: true, breakpoint: 768 }
+                }}
+                
+                content={{
+                  alignment: {
+                    horizontal: 'center',
+                    vertical: 'center'
+                  }
+                }}
+                
+                interaction={{
+                  keyboardNavigation: true,
+                  pointClick: true,
+                  autoScroll: false,
+                }}
+                
+                display={{
+                  borderless: false,
+                  toolbar: { enabled: false } 
+                }}
+                
+                animation={{
+                  slideshow: { enabled: false, duration: 4000, type: 'fade' }
+                }}
+                
+                theme={{
+                  primary: '#0070f3',
+                  cardBgColor: '#ffffff',
+                  cardTitleColor: '#1f2937'
+                }}
+              />
+            </div>
           </div>
-        ) : null}
-      </div>
+        )
+      }
     </>
   )
 }
