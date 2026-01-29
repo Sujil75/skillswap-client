@@ -16,7 +16,6 @@ const TimelinePage = () => {
       const res = await api.get("/stats/skills", {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log(res.data)
 
       const items = res.data.skills
         .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -36,9 +35,6 @@ const TimelinePage = () => {
     loadData()
   }, [token])
 
-  if (!timelineData)
-    return <p className="p-6 text-center text-gray-500">Loading timeline...</p>
-
   const items = timelineData.map(i => ({
     title: i.created_at,
     cardTitle: i.title,
@@ -53,59 +49,58 @@ const TimelinePage = () => {
     <>
       <Navbar />
 
-      {timelineData.length === 0 ? (
+      {!timelineData ? (
         <div className="p-6 h-[100vh] flex justify-center items-center">
           <Loader color="#1455ce" size="70" />
         </div>
-        ) : (
-          <div className="p-6" style={{scrollbarWidth: "none"}}>
-            <h2 className="text-3xl font-semibold mb-6">Skill Timeline</h2>
-            <div style={{ width: "100%", height: "700px" }} className="mx-auto flex flex-col justify-center">
-              <Chrono
-                items={items}
-                mode="alternating"
-                focusActiveItemOnLoad={false} 
-                scrollable={false}
-                hideControls={true} 
-                
-                layout={{
-                  cardWidth: 450,
-                  cardHeight: 'auto',
-                  responsive: { enabled: true, breakpoint: 768 }
-                }}
-                
-                content={{
-                  alignment: {
-                    horizontal: 'center',
-                    vertical: 'center'
-                  }
-                }}
-                
-                interaction={{
-                  keyboardNavigation: true,
-                  pointClick: true,
-                  autoScroll: false,
-                }}
-                
-                display={{
-                  borderless: false,
-                  toolbar: { enabled: false } 
-                }}
-                
-                animation={{
-                  slideshow: { enabled: false, duration: 4000, type: 'fade' }
-                }}
-                
-                theme={{
-                  primary: '#0070f3',
-                  cardBgColor: '#ffffff',
-                  cardTitleColor: '#1f2937'
-                }}
-              />
-            </div>
+      ) : (
+        <div className="p-6" style={{scrollbarWidth: "none"}}>
+          <h2 className="text-3xl font-semibold mb-6">Skill Timeline</h2>
+          <div style={{ width: "100%", height: "700px" }} className="mx-auto flex flex-col justify-center">
+            <Chrono
+              items={items}
+              mode="alternating"
+              focusActiveItemOnLoad={false} 
+              scrollable={false}
+              hideControls={true} 
+              
+              layout={{
+                cardWidth: 450,
+                cardHeight: 'auto',
+                responsive: { enabled: true, breakpoint: 768 }
+              }}
+              
+              content={{
+                alignment: {
+                  horizontal: 'center',
+                  vertical: 'center'
+                }
+              }}
+              
+              interaction={{
+                keyboardNavigation: true,
+                pointClick: true,
+                autoScroll: false,
+              }}
+              
+              display={{
+                borderless: false,
+                toolbar: { enabled: false } 
+              }}
+              
+              animation={{
+                slideshow: { enabled: false, duration: 4000, type: 'fade' }
+              }}
+              
+              theme={{
+                primary: '#0070f3',
+                cardBgColor: '#ffffff',
+                cardTitleColor: '#1f2937'
+              }}
+            />
           </div>
-        )
-      }
+        </div>
+      )}
     </>
   )
 }

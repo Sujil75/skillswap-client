@@ -4,6 +4,7 @@ import api from "../utils/api"
 import { UserContext } from "../context/UserContext"
 import CommentBox from "../components/CommentBox"
 import Navbar from "../components/Navbar"
+import Loader from '../components/Loader'
 
 const SkillDetails = () => {
   const { id } = useParams()
@@ -41,7 +42,7 @@ const SkillDetails = () => {
     navigate("/")
   }
 
-  if(!skill) return <p className="p-6 text-center">Loading...</p>
+  if(!skill) return <div className="p-6 h-[100vh] flex justify-center items-center"><Loader color="#1455ce" size="70" /></div>
 
   return (
     <>

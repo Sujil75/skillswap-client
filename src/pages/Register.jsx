@@ -23,7 +23,7 @@ const Register = () => {
     localStorage.removeItem("token")
     localStorage.setItem("token", res.data.token)
     
-    if (!token) {
+    if (localStorage.getItem("token") === null) {
       localStorage.removeItem("token")
       localStorage.removeItem("user")
 

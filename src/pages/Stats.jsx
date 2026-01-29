@@ -30,45 +30,44 @@ const Stats = () => {
         <div className="p-6 h-[100vh] flex justify-center items-center">
           <Loader color="#1455ce" size="70" />
         </div>
-        ) : (
-          <div className="p-6">
-            <h2 className="text-2xl mb-5">Skill Statistics</h2>
+      ) : (
+        <div className="p-6">
+          <h2 className="text-2xl mb-5">Skill Statistics</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-              {/* Pie Chart */}
-              <div className="bg-white shadow p-4 rounded">
-                <h3 className="text-lg mb-2">Skills by Category</h3>
-                <PieChart width={350} height={300}>
-                  <Pie
-                    data={stats.skillByCategory}
-                    dataKey="count"
-                    nameKey="_id"
-                    outerRadius={120}
-                  >
-                    {stats.skillByCategory.map((_, index)=>(
-                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </div>
-
-              {/* Bar Chart */}
-              <div className="bg-white shadow p-4 rounded">
-                <h3 className="text-lg mb-2">Average Rating</h3>
-                <BarChart width={350} height={300} data={[stats.overallStatus]}>
-                  <XAxis dataKey="totalPass" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="avgRating" fill="#82ca9d" />
-                </BarChart>
-              </div>
-
+            {/* Pie Chart */}
+            <div className="bg-white shadow p-4 rounded">
+              <h3 className="text-lg mb-2">Skills by Category</h3>
+              <PieChart width={350} height={300}>
+                <Pie
+                  data={stats.skillByCategory}
+                  dataKey="count"
+                  nameKey="_id"
+                  outerRadius={120}
+                >
+                  {stats.skillByCategory.map((_, index)=>(
+                    <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
             </div>
+
+            {/* Bar Chart */}
+            <div className="bg-white shadow p-4 rounded">
+              <h3 className="text-lg mb-2">Average Rating</h3>
+              <BarChart width={350} height={300} data={[stats.overallStatus]}>
+                <XAxis dataKey="totalPass" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="avgRating" fill="#82ca9d" />
+              </BarChart>
+            </div>
+
           </div>
-        )
-      }
+        </div>
+      )}
     </>
   )
 }
