@@ -3,9 +3,14 @@ import { MdDeleteOutline } from "react-icons/md"
 import {useContext} from 'react'
 import { UserContext } from "../context/UserContext"
 import api from "../utils/api"
+import { RxUpdate } from "react-icons/rx";
 
 const SkillCard = ({ skill, onDelete }) => {
   const {token} = useContext(UserContext)
+
+  const updateSkill = () => {
+    console.log("Update skill:", skill._id)
+  }
 
   const deleteSkill = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this skill?")
@@ -25,7 +30,15 @@ const SkillCard = ({ skill, onDelete }) => {
 
   return (
     <div className="shadow-md p-4 rounded bg-white">
-      <button type="button" onClick={deleteSkill} className="text-red-500 border-none bg-none float-right hover: cursor-pointer"><MdDeleteOutline size="20" /></button>
+      <div className="flex justify-end gap-2 w-full">
+        <button type="button" onClick={deleteSkill} className="text-red-500 border-none bg-none hover: cursor-pointer">
+          <MdDeleteOutline size="20" />
+        </button>
+
+        <button type="button" onClick={updateSkill} className="text-blue-500 border-none bg-none hover: cursor-pointer">
+          <RxUpdate size="18" />
+        </button>
+      </div>
       <h3 className="text-xl font-bold">{skill.title}</h3>
       <p className="text-gray-600">{skill.description.substring(0, 80)}...</p>
       <p className="text-sm mt-2">Rating: ⭐ {skill.rating}</p>

@@ -14,7 +14,7 @@ const Navbar = () => {
   logoutUser = () => {
     setLoader(apiConstant.inProgress)
     localStorage.removeItem("token")
-    localStorage.removeItem('user')
+    // localStorage.removeItem('user')
     window.location.reload()
     navigate("/login")
   }
