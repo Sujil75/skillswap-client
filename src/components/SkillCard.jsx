@@ -1,16 +1,13 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { MdDeleteOutline } from "react-icons/md"
 import {useContext} from 'react'
 import { UserContext } from "../context/UserContext"
 import api from "../utils/api"
-import { RxUpdate } from "react-icons/rx";
+import { RxUpdate } from "react-icons/rx"
 
 const SkillCard = ({ skill, onDelete }) => {
+  const navigate = useNavigate()
   const {token} = useContext(UserContext)
-
-  const updateSkill = () => {
-    console.log("Update skill:", skill._id)
-  }
 
   const deleteSkill = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this skill?")
@@ -35,7 +32,7 @@ const SkillCard = ({ skill, onDelete }) => {
           <MdDeleteOutline size="20" />
         </button>
 
-        <button type="button" onClick={updateSkill} className="text-blue-500 border-none bg-none hover: cursor-pointer">
+        <button type="button" onClick={() => navigate('/update-skill', {state: {skill}})} className="text-blue-500 border-none bg-none hover: cursor-pointer">
           <RxUpdate size="18" />
         </button>
       </div>

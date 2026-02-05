@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard"
 import SkillCreate from "./pages/SkillCreate"
 import SkillDetails from "./pages/SkillDetails"
 import UserSkills from "./pages/UserSkills"
+import SkillUpdate from "./components/SkillUpdate"
 import Stats from "./pages/Stats"
 import { UserProvider } from "./context/UserContext"
 import TimelinePage from "./pages/Timeline"
@@ -35,6 +36,9 @@ export default function App() {
         </Route>
         <Route path="/timeline" element={<ProtectedRoute />}>
             <Route index element={<TimelinePage />} />
+        </Route>
+        <Route path="/update-skill" element={<ProtectedRoute />}>
+            <Route index element={<SkillUpdate />} />
         </Route>
       </Routes>
     </UserProvider>
